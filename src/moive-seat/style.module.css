@@ -1,0 +1,147 @@
+/* @font-face {
+  font-family: "fontGame";
+  src: url("../font/Pony.ttf");
+} */
+
+body {
+  background-image: url(../../public/imgs/bgmovie.jpg);
+  height: 120vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.body {
+  width: 800px;
+  /* position: absolute; */
+  margin: 0 auto;
+  background: rgba(128, 128, 128, 0.34);
+  padding: 3.5vw;
+  box-sizing: border-box;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+}
+
+.ul {
+  justify-content: center;
+  display: flex;
+  padding: 0;
+  list-style: none;
+}
+
+.ul li {
+  align-items: center;
+  display: flex;
+  margin: 0 10px;
+  /* display: inline-block; */
+}
+.bookingMovie {
+  font-family: "fontGame";
+}
+
+.ghe {
+  background-color: white;
+  border: 3px solid orange;
+  width: 45px;
+  height: 35px;
+  font-size: 12px;
+  margin-left: 2%;
+  margin-bottom: 1%;
+  border-radius: 5px;
+}
+
+.rowNumber {
+  /* font-size: 25px; */
+  width: 45px;
+  height: 35px;
+  background: none;
+  border: none;
+  margin-left: 2%;
+  margin-bottom: 1%;
+  font-size: 30px;
+  color: yellow;
+}
+.firstChar {
+  color: yellow;
+  font-size: 35px;
+  margin-right: 15px;
+}
+
+.screen {
+  border-bottom: 50px solid rgb(255, 159, 95);
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  height: 50px;
+  width: 80%;
+  /* filter: drop-shadow(4px 30px 20px rgba(255, 255, 255, 0.5));  */
+  font-size: 25px;
+  color: #fff;
+  position: relative;
+  margin: 0 auto;
+}
+
+.gheDuocChon {
+  border: 3px solid orange;
+
+  background: orange;
+  color: #000;
+
+  cursor: no-drop !important;
+  border-radius: 5px;
+  width: 45px;
+  height: 35px;
+}
+
+.gheDangChon {
+  background: rgb(109, 238, 109);
+  border: 3px solid rgb(109, 238, 109);
+  color: #000;
+
+  cursor: pointer;
+  border-radius: 5px;
+  width: 45px;
+  height: 35px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 50px);
+}
+
+.checkmark {
+  background-color: white;
+  border: 3px solid orange;
+  width: 45px;
+  height: 35px;
+  font-size: 12px;
+  margin-left: 2%;
+  margin-bottom: 1%;
+  border-radius: 5px;
+}
+/* Hide the browser's default radio button */
+.input {
+  position: absolute;
+  z-index: 11111111;
+  opacity: 0;
+  cursor: pointer;
+  background-color: white;
+  border: 3px solid orange;
+  width: 45px;
+  height: 35px;
+  font-size: 12px;
+  margin-left: 2%;
+  margin-bottom: 1%;
+  border-radius: 5px;
+}
+
+/* When the radio button is checked, add a blue background */
+.input:checked ~ .checkmark {
+  background-color: green;
+}
+
+.th {
+  text-align: center;
+  background: #ff9800;
+  letter-spacing: 1px;
+}
