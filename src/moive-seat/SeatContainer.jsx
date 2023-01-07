@@ -6,12 +6,6 @@ import { connect } from "react-redux";
 class SeatContainer extends Component {
   render() {
     const { Data, info, confirmSelection } = this.props;
-    // const confirm = () => {
-    //   const soLuongCan = info.soGhe.parseFloat();
-    //   const soLuong = soLuong;
-    //   if (soLuong === soLuongCan) {
-    //   }
-    // };
     return (
       <div>
         <div className="my-5">

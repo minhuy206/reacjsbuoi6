@@ -95,18 +95,13 @@ body {
 
 .gheDangChon {
   background: rgb(109, 238, 109);
-  border: 3px solid rgb(109, 238, 109);
   color: #000;
+  border: 3px solid orange;
 
   cursor: pointer;
   border-radius: 5px;
   width: 45px;
   height: 35px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(12, 50px);
 }
 
 .checkmark {
@@ -119,14 +114,13 @@ body {
   margin-bottom: 1%;
   border-radius: 5px;
 }
-/* Hide the browser's default radio button */
+
 .input {
   position: absolute;
   z-index: 11111111;
   opacity: 0;
   cursor: pointer;
-  background-color: white;
-  border: 3px solid orange;
+  border: 3px solid transparent;
   width: 45px;
   height: 35px;
   font-size: 12px;
@@ -137,7 +131,7 @@ body {
 
 /* When the radio button is checked, add a blue background */
 .input:checked ~ .checkmark {
-  background-color: green;
+  background-color: rgb(109, 238, 109);
 }
 
 .th {

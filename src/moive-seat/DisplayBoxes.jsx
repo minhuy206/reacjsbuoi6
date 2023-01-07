@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 
 class DisplayBoxes extends Component {
   render() {
-    const { isConfirm, info, soGheChon } = this.props;
+    const { isConfirm, info, soGheChon, totalPrice } = this.props;
     return (
       <div className="mt-5 mx-auto" style={{ width: "600px" }}>
-        {" "}
-        <table style={{ backgroundColor: "#fff" }}>
+        <table style={{ backgroundColor: "#fff", width: "600px" }}>
           <thead>
             <tr>
               <th className="text-center" style={{ border: "1px solid black" }}>
@@ -18,6 +17,9 @@ class DisplayBoxes extends Component {
               </th>
               <th className="text-center" style={{ border: "1px solid black" }}>
                 Seats
+              </th>
+              <th className="text-center" style={{ border: "1px solid black" }}>
+                Total Price
               </th>
             </tr>
           </thead>
@@ -31,6 +33,8 @@ class DisplayBoxes extends Component {
                     disabled
                     value={info.ten}
                     style={{ border: "none", backgroundColor: "#fff" }}
+                    cols="15"
+                    rows="5"
                   ></textarea>
                 ) : (
                   <textarea
@@ -38,6 +42,8 @@ class DisplayBoxes extends Component {
                     id=""
                     disabled
                     style={{ border: "none", backgroundColor: "#fff" }}
+                    cols="15"
+                    rows="5"
                   ></textarea>
                 )}
               </td>
@@ -49,6 +55,8 @@ class DisplayBoxes extends Component {
                     value={info.soGhe}
                     disabled
                     style={{ border: "none", backgroundColor: "#fff" }}
+                    cols="15"
+                    rows="5"
                   ></textarea>
                 ) : (
                   <textarea
@@ -56,6 +64,8 @@ class DisplayBoxes extends Component {
                     id=""
                     disabled
                     style={{ border: "none", backgroundColor: "#fff" }}
+                    cols="15"
+                    rows="5"
                   ></textarea>
                 )}
               </td>
@@ -67,6 +77,8 @@ class DisplayBoxes extends Component {
                     value={soGheChon}
                     disabled
                     style={{ border: "none", backgroundColor: "#fff" }}
+                    cols="15"
+                    rows="5"
                   ></textarea>
                 ) : (
                   <textarea
@@ -74,6 +86,30 @@ class DisplayBoxes extends Component {
                     id=""
                     disabled
                     style={{ border: "none", backgroundColor: "#fff" }}
+                    cols="15"
+                    rows="5"
+                  ></textarea>
+                )}
+              </td>
+              <td style={{ border: "1px solid black" }}>
+                {isConfirm ? (
+                  <textarea
+                    name=""
+                    id=""
+                    value={totalPrice}
+                    disabled
+                    style={{ border: "none", backgroundColor: "#fff" }}
+                    cols="15"
+                    rows="5"
+                  ></textarea>
+                ) : (
+                  <textarea
+                    name=""
+                    id=""
+                    disabled
+                    style={{ border: "none", backgroundColor: "#fff" }}
+                    cols="15"
+                    rows="5"
                   ></textarea>
                 )}
               </td>
@@ -89,6 +125,7 @@ const mapStateToProps = (state) => {
     isConfirm: state.movieSeatReducer.isConfirm,
     soGheChon: state.movieSeatReducer.soGheChon,
     info: state.movieSeatReducer.info,
+    totalPrice: state.movieSeatReducer.totalPrice,
   };
 };
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Seat from "./Seat";
-import styles from "./style.module.css";
+import ReverseSeat from "./ReverseSeat";
 
 export default class SeatRow extends Component {
   render() {
@@ -23,7 +23,11 @@ export default class SeatRow extends Component {
         });
       } else {
         return row.danhSachGhe.map((seat) => {
-          return <Seat key={seat.soGhe} soGhe={seat.soGhe} />;
+          return seat.daDat ? (
+            <ReverseSeat key={seat.soGhe} />
+          ) : (
+            <Seat key={seat.soGhe} seat={seat} />
+          );
         });
       }
     };

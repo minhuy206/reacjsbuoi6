@@ -191,6 +191,7 @@ const intialState = {
   info: null,
   soGheChon: [],
   soLuong: 0,
+  totalPrice: 0,
   isSubmitInfo: false,
   isConfirm: false,
 };
@@ -215,19 +216,22 @@ const movieSeatReducer = (state = intialState, action) => {
       return { ...state };
     }
     case "CHECK_SEAT": {
+      const { soGhe, gia } = action.payload;
       let soGheChon = [...state.soGheChon];
-      soGheChon.push(action.payload);
+      soGheChon.push(soGhe);
       state.soGheChon = soGheChon;
       state.soLuong = state.soGheChon.length;
       console.log(state.soLuong, state.soGheChon);
+      state.totalPrice += gia;
       return { ...state };
     }
     case "UNCHECK_SEAT": {
+      const { soGhe, gia } = action.payload;
       let soGheChon = [...state.soGheChon];
-      // const index = soGheChon.findIndex((soGhe) => soGhe === action.payload);
-      state.soGheChon = soGheChon.filter((soGhe) => soGhe !== action.payload);
+      state.soGheChon = soGheChon.filter((soGheChon) => soGheChon !== soGhe);
       state.soLuong = state.soGheChon.length;
       console.log(state.soLuong, state.soGheChon);
+      state.totalPrice -= gia;
       return { ...state };
     }
     case "CONFIRM_SELECTION": {

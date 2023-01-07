@@ -5,14 +5,12 @@ import styles from "./style.module.css";
 
 class Seat extends Component {
   handleOnCheck = (event) => {
-    const { soGhe } = this.props;
+    const { seat } = this.props;
     if (event.target.checked) {
-      this.props.checkSeat(soGhe);
+      this.props.checkSeat(seat);
     } else {
-      this.props.uncheckSeat(soGhe);
+      this.props.uncheckSeat(seat);
     }
-    const { soGheChon } = this.props;
-    console.log(soGheChon);
   };
 
   render() {
@@ -62,17 +60,17 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    checkSeat: (soGhe) => {
+    checkSeat: (seat) => {
       const action = {
         type: "CHECK_SEAT",
-        payload: soGhe,
+        payload: seat,
       };
       dispatch(action);
     },
-    uncheckSeat: (soGhe) => {
+    uncheckSeat: (seat) => {
       const action = {
         type: "UNCHECK_SEAT",
-        payload: soGhe,
+        payload: seat,
       };
       dispatch(action);
     },
