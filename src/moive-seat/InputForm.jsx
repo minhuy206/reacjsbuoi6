@@ -26,6 +26,7 @@ class InputForm extends Component {
   };
 
   render() {
+    const { isSubmitInfo } = this.props;
     const h2Style = {
       color: "#ff9800",
       textTransform: "capitalize",
@@ -50,36 +51,69 @@ class InputForm extends Component {
               <label htmlFor="name" style={labelStyle}>
                 Name <span style={{ color: "red" }}>*</span>
               </label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                name="ten"
-                onChange={this.handleOnChange}
-              />
+              {isSubmitInfo ? (
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  name="ten"
+                  onChange={this.handleOnChange}
+                  disabled
+                />
+              ) : (
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  name="ten"
+                  onChange={this.handleOnChange}
+                />
+              )}
             </div>
             <div className="form-group mx-4" style={{ width: "50%" }}>
               <label htmlFor="soGhe" style={labelStyle}>
                 Number of Seats <span style={{ color: "red" }}>*</span>
               </label>
-              <input
-                type="number"
-                className="form-control"
-                id="soGhe"
-                name="soGhe"
-                onChange={this.handleOnChange}
-              />
+              {isSubmitInfo ? (
+                <input
+                  type="number"
+                  className="form-control"
+                  id="soGhe"
+                  name="soGhe"
+                  onChange={this.handleOnChange}
+                  disabled
+                />
+              ) : (
+                <input
+                  type="number"
+                  className="form-control"
+                  id="soGhe"
+                  name="soGhe"
+                  onChange={this.handleOnChange}
+                />
+              )}
             </div>
           </div>
 
-          <button type="submit" className="btn btn-light">
-            Start Selecting
-          </button>
+          {isSubmitInfo ? (
+            <button type="submit" className="btn btn-light" disabled>
+              Start Selecting
+            </button>
+          ) : (
+            <button type="submit" className="btn btn-light">
+              Start Selecting
+            </button>
+          )}
         </form>
       </>
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    isSubmitInfo: state.movieSeatReducer.isSubmitInfo,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -93,4 +127,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(InputForm);
+export default connect(mapStateToProps, mapDispatchToProps)(InputForm);

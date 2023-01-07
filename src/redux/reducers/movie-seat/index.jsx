@@ -1,6 +1,4 @@
 const intialState = {
-  info: null,
-  soGheChon: [],
   data: [
     {
       hang: "",
@@ -190,24 +188,57 @@ const intialState = {
       ],
     },
   ],
+  info: null,
+  soGheChon: [],
+  soLuong: 0,
+  isSubmitInfo: false,
+  isConfirm: false,
 };
 
 const movieSeatReducer = (state = intialState, action) => {
   switch (action.type) {
     case "SUBMIT_INFO": {
-      state.info = action.payload;
+      if (
+        action.payload.ten &&
+        action.payload.soGhe &&
+        action.payload.soGhe != 0
+      ) {
+        state.info = action.payload;
+        state.isSubmitInfo = true;
+      } else if (action.payload.soGhe == 0) {
+        alert("Vui long nhap so ghe khac khong");
+      } else {
+        alert("Vui long dien day du thong tin");
+        return { ...state };
+      }
+
       return { ...state };
     }
     case "CHECK_SEAT": {
       let soGheChon = [...state.soGheChon];
       soGheChon.push(action.payload);
       state.soGheChon = soGheChon;
+      state.soLuong = state.soGheChon.length;
+      console.log(state.soLuong, state.soGheChon);
       return { ...state };
     }
     case "UNCHECK_SEAT": {
       let soGheChon = [...state.soGheChon];
-      soGheChon.filter((soGhe) => soGhe !== action.payload);
-      state.soGheChon = soGheChon;
+      // const index = soGheChon.findIndex((soGhe) => soGhe === action.payload);
+      state.soGheChon = soGheChon.filter((soGhe) => soGhe !== action.payload);
+      state.soLuong = state.soGheChon.length;
+      console.log(state.soLuong, state.soGheChon);
+      return { ...state };
+    }
+    case "CONFIRM_SELECTION": {
+      const soLuong = state.soLuong;
+      const soLuongCan = state.info.soGhe;
+      if (soLuong == soLuongCan) {
+        state.isConfirm = action.payload;
+      } else {
+        alert("Vui long chon dung so luong ghe");
+        return { ...state };
+      }
       return { ...state };
     }
 

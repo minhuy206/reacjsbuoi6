@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class DisplayBoxes extends Component {
+class DisplayBoxes extends Component {
   render() {
+    const { isConfirm, info, soGheChon } = this.props;
     return (
       <div className="mt-5 mx-auto" style={{ width: "600px" }}>
         {" "}
@@ -22,28 +24,58 @@ export default class DisplayBoxes extends Component {
           <tbody>
             <tr>
               <td style={{ border: "1px solid black" }}>
-                <textarea
-                  name=""
-                  id=""
-                  disabled
-                  style={{ border: "none", backgroundColor: "#fff" }}
-                ></textarea>
+                {isConfirm ? (
+                  <textarea
+                    name=""
+                    id=""
+                    disabled
+                    value={info.ten}
+                    style={{ border: "none", backgroundColor: "#fff" }}
+                  ></textarea>
+                ) : (
+                  <textarea
+                    name=""
+                    id=""
+                    disabled
+                    style={{ border: "none", backgroundColor: "#fff" }}
+                  ></textarea>
+                )}
               </td>
               <td style={{ border: "1px solid black" }}>
-                <textarea
-                  name=""
-                  id=""
-                  disabled
-                  style={{ border: "none", backgroundColor: "#fff" }}
-                ></textarea>
+                {isConfirm ? (
+                  <textarea
+                    name=""
+                    id=""
+                    value={info.soGhe}
+                    disabled
+                    style={{ border: "none", backgroundColor: "#fff" }}
+                  ></textarea>
+                ) : (
+                  <textarea
+                    name=""
+                    id=""
+                    disabled
+                    style={{ border: "none", backgroundColor: "#fff" }}
+                  ></textarea>
+                )}
               </td>
               <td style={{ border: "1px solid black" }}>
-                <textarea
-                  name=""
-                  id=""
-                  disabled
-                  style={{ border: "none", backgroundColor: "#fff" }}
-                ></textarea>
+                {isConfirm ? (
+                  <textarea
+                    name=""
+                    id=""
+                    value={soGheChon}
+                    disabled
+                    style={{ border: "none", backgroundColor: "#fff" }}
+                  ></textarea>
+                ) : (
+                  <textarea
+                    name=""
+                    id=""
+                    disabled
+                    style={{ border: "none", backgroundColor: "#fff" }}
+                  ></textarea>
+                )}
               </td>
             </tr>
           </tbody>
@@ -52,3 +84,12 @@ export default class DisplayBoxes extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    isConfirm: state.movieSeatReducer.isConfirm,
+    soGheChon: state.movieSeatReducer.soGheChon,
+    info: state.movieSeatReducer.info,
+  };
+};
+
+export default connect(mapStateToProps, null)(DisplayBoxes);

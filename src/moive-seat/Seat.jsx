@@ -11,33 +11,40 @@ class Seat extends Component {
     } else {
       this.props.uncheckSeat(soGhe);
     }
+    const { soGheChon } = this.props;
+    console.log(soGheChon);
   };
 
   render() {
-    const { info, soGheChon } = this.props;
-    // console.log(soGheChon.length());
-    console.log(soGheChon.prototype);
+    const { info, isConfirm } = this.props;
 
+    const renderInput = () => {
+      if (info && info.ten && info.soGhe && !isConfirm) {
+        return (
+          <input
+            className={styles.input}
+            type="checkbox"
+            onChange={this.handleOnCheck}
+          />
+        );
+      } else {
+        return (
+          <input
+            className={styles.input}
+            type="checkbox"
+            onChange={this.handleOnCheck}
+            disabled
+          />
+        );
+      }
+    };
     return (
       <li style={{ display: "inline-block" }}>
         <div
           className="mx-1"
           style={{ position: "relative", display: "inline-block" }}
         >
-          {info ? (
-            <input
-              className={styles.input}
-              type="checkbox"
-              onChange={this.handleOnCheck}
-            />
-          ) : (
-            <input
-              className={styles.input}
-              type="checkbox"
-              onChange={this.handleOnCheck}
-              disabled
-            />
-          )}
+          {renderInput()}
           <label className={styles.checkmark}></label>
         </div>
       </li>
@@ -48,6 +55,8 @@ const mapStateToProps = (state) => {
   return {
     info: state.movieSeatReducer.info,
     soGheChon: state.movieSeatReducer.soGheChon,
+    isConfirm: state.movieSeatReducer.isConfirm,
+    isSubmitInfo: state.movieSeatReducer.isSubmitInfo,
   };
 };
 

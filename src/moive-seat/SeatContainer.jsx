@@ -5,7 +5,13 @@ import { connect } from "react-redux";
 
 class SeatContainer extends Component {
   render() {
-    const { Data, info } = this.props;
+    const { Data, info, confirmSelection } = this.props;
+    // const confirm = () => {
+    //   const soLuongCan = info.soGhe.parseFloat();
+    //   const soLuong = soLuong;
+    //   if (soLuong === soLuongCan) {
+    //   }
+    // };
     return (
       <div>
         <div className="my-5">
@@ -59,9 +65,26 @@ class SeatContainer extends Component {
             </p>
           </div>
           <div>
-            <button className="d-block btn btn-light mt-3 mx-auto">
-              Confirm Selection
-            </button>
+            {info ? (
+              <button
+                className="d-block btn btn-light mt-3 mx-auto"
+                onClick={() => {
+                  confirmSelection(true);
+                }}
+              >
+                Confirm Selection
+              </button>
+            ) : (
+              <button
+                className="d-block btn btn-light mt-3 mx-auto"
+                onClick={() => {
+                  confirmSelection(true);
+                }}
+                disabled
+              >
+                Confirm Selection
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -73,7 +96,21 @@ const mapStateToProps = (state) => {
   return {
     Data: state.movieSeatReducer.data,
     info: state.movieSeatReducer.info,
+    soLuong: state.movieSeatReducer.soLuong,
+    gheDangChon: state.movieSeatReducer.gheDangChon,
   };
 };
 
-export default connect(mapStateToProps, null)(SeatContainer);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    confirmSelection: (isConfirm) => {
+      const action = {
+        type: "CONFIRM_SELECTION",
+        payload: isConfirm,
+      };
+      dispatch(action);
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SeatContainer);
